@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gửi Man An 💖 – Chúc mừng 20/10</title>
+  <meta name="description" content="Một món quà nhỏ dành tặng Man An – vợ iu của anh 💖" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Dancing+Script:wght@500;700&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Nhạc nền (file mp4 của bạn, chỉ dùng phần tiếng) -->
+  <video id="bgm" src="assets/music.mp4" loop playsinline webkit-playsinline preload="auto" class="hidden-media"></video>
+
+  <!-- Nền: chữ bay + tim bay -->
+  <canvas id="galaxy" aria-hidden="true"></canvas>
+  <canvas id="hearts" aria-hidden="true"></canvas>
+  <div id="sparkles" aria-hidden="true"></div>
+
+  <!-- Nút điều khiển -->
+  <nav class="controls" aria-label="Điều khiển">
+    <button id="musicBtn" class="ctrl-btn" type="button" title="Bật / tắt nhạc" aria-pressed="false">
+      <i class="fa-solid fa-music"></i>
+    </button>
+    <button id="fxBtn" class="ctrl-btn fx" type="button" title="Nhấn làm các hiệu ứng ✨">
+      <i class="fa-solid fa-wand-magic-sparkles"></i>
+    </button>
+  </nav>
+
+  <!-- Lời bài hát chạy theo nhạc -->
+  <div id="lyric" class="lyric" aria-live="polite"></div>
+
+  <main>
+    <!-- CẢNH 1: Thông điệp bay lạc -->
+    <section id="scene-intro" class="scene active">
+      <div class="glass-card intro-card">
+        <p class="caption">Có một thông điệp đang bay lạc... ✨</p>
+        <p class="sub">Những con chữ đang trôi trong vũ trụ, chờ một người giải mã 💫</p>
+        <button id="decodeBtn" class="btn-main" type="button">
+          <span>Giải mã</span> <i class="fa-solid fa-envelope-open-text"></i>
+        </button>
+        <p class="hint"><i class="fa-solid fa-volume-high"></i> Bật loa lên nha 🎧</p>
+      </div>
+    </section>
+
+    <!-- CẢNH 2: Ghép chữ -->
+    <section id="scene-reveal" class="scene">
+      <p id="revealStatus" class="caption status">Các chữ cái đang tìm về nhau... ✨</p>
+      <h2 id="revealTop" class="reveal-top"></h2>
+      <h1 id="revealName" class="reveal-name"></h1>
+      <p id="revealDone" class="caption done">Giải mã thành công 💖</p>
+    </section>
+
+    <!-- CẢNH 3: Thiệp -->
+    <section id="scene-card" class="scene">
+      <article class="gift-card">
+        <header class="gift-head">
+          <span class="ribbon">20 · 10 · NGÀY PHỤ NỮ VIỆT NAM</span>
+          <h2 class="gift-title">Gửi tặng <span class="name">Man An</span> 💖</h2>
+          <p class="gift-sub">vợ iu của anh ✨</p>
+        </header>
+
+        <p class="gift-msg">
+          Nhân ngày 20/10, chúc <b>Man An</b> luôn xinh đẹp, rạng rỡ như đoá hồng đầu mùa.
+          Mong mỗi ngày của em đều ngập tràn tiếng cười và thật nhiều yêu thương. ❤️
+        </p>
+
+        <ul class="wish-grid">
+          <li class="wish"><span class="wish-ico">🌹</span><span>Luôn xinh đẹp</span></li>
+          <li class="wish"><span class="wish-ico">😊</span><span>Thật hạnh phúc</span></li>
+          <li class="wish"><span class="wish-ico">🕊️</span><span>Bình yên</span></li>
+          <li class="wish"><span class="wish-ico">💞</span><span>Được yêu thương</span></li>
+        </ul>
+
+        <div class="gift-actions">
+          <button id="openLetterBtn" class="btn-main" type="button">
+            <i class="fa-solid fa-envelope"></i> <span>Mở thư anh viết</span>
+          </button>
+          <button id="burstBtn" class="btn-ghost" type="button">
+            <i class="fa-solid fa-heart"></i> <span>Ngàn trái tym</span>
+          </button>
+        </div>
+
+        <footer class="gift-foot">
+          Cảm ơn em vì đã xuất hiện và làm cho thế giới này dịu dàng hơn rất nhiều. ✨
+          <br /><em>— Một người luôn nghĩ đến em ❤️</em>
+        </footer>
+      </article>
+    </section>
+
+    <!-- CẢNH 4: Lá thư -->
+    <section id="scene-letter" class="scene">
+      <div class="envelope-wrap">
+        <div id="envelope" class="envelope">
+          <div class="env-back"></div>
+          <div class="env-letter">
+            <article class="paper">
+              <header class="paper-head">
+                <span class="paper-date">Ngày 20 tháng 10</span>
+                <h2 class="paper-title">Gửi vợ iu Man An 💌</h2>
+              </header>
+              <div id="letterBody" class="paper-body" aria-live="polite"></div>
+              <p id="letterSign" class="paper-sign">
+                Yêu em nhiều lắm,<br />
+                <span>Chồng của em ❤️</span>
+              </p>
+              <div class="paper-actions">
+                <button id="replayBtn" class="btn-ghost small" type="button"><i class="fa-solid fa-rotate-left"></i> Đọc lại</button>
+                <button id="backCardBtn" class="btn-ghost small" type="button"><i class="fa-solid fa-gift"></i> Về thiệp</button>
+              </div>
+            </article>
+          </div>
+          <div class="env-front"></div>
+          <div class="env-flap"></div>
+          <div class="env-seal">💖</div>
+        </div>
+        <p id="envHint" class="caption">Chạm vào phong thư để mở 💌</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
